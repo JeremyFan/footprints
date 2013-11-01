@@ -5,6 +5,7 @@
     <longitude>39.97712</longitude>
     <latitude>116.353455</latitude>
     <state>0</state>
+    <info>我在这里生活啦</info>
   </city>
 
   <city name="TianJin">
@@ -12,6 +13,7 @@
     <longitude>39.095963</longitude>
     <latitude>117.198715</latitude>
     <state>-1</state>
+    <info>大学呆了4年的地方！</info>
   </city>
 
   <city name="HangZhou">
@@ -19,6 +21,7 @@
     <longitude>30.268556</longitude>
     <latitude>120.144768</latitude>
     <state>-1</state>
+    <info>慢城。早晨的西湖被爷爷奶奶叔叔阿姨攻占</info>
   </city>
 
   <city name="NanJing">
@@ -26,17 +29,20 @@
     <longitude>32.073266</longitude>
     <latitude>118.804436</latitude>
     <state>-1</state>
+    <info>心仪的城市。只呆了3个小时，秦淮河很美</info>
   </city>
   <city name="JiNan">
     <title>济南</title>
     <longitude>36.659606</longitude>
     <latitude>117.090569</latitude>
     <state>-1</state>
+    <info>三大名胜坑爹，但芙蓉街是我见过的最挤的小吃街，完爆北京地铁和其他小吃街</info>
   </city>
   <city name="GuangZhou">
     <title>广州</title>
     <longitude>23.14036</longitude>
     <latitude>113.26561</latitude>
     <state>1</state>
+    <info>大概是要去的地方</info>
   </city>
 </data>

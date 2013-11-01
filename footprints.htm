@@ -6,7 +6,9 @@
     <title>Footprints</title>
 </head>
 <body>
-    <div class="m-mc" id="map-canvas"></div>
+    <div class="g-content">
+        <div class="u-mc" id="map-canvas"></div>
+    </div>
     <script>
         $(function () {
             initMap();
@@ -26,13 +28,9 @@
             };
             map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
-            var myLatlng = new google.maps.LatLng(39.97712, 116.353455);
-
             setData();
+
             drop();
-
-
-           
         }
 
         /// Data container.
@@ -51,7 +49,8 @@
                             'title': item.find('title').text(),
                             'longitude': item.find('longitude').text(),
                             'latitude': item.find('latitude').text(),
-                            'state': item.find('state').text()
+                            'state': item.find('state').text(),
+                            'info': item.find('info').text(),
                         }
                         cities.push(city);
                     });
@@ -59,29 +58,50 @@
             });
         }
 
-        /// Drop method.
+        /// Drop markers with different time.
         function drop() {
             $(cities).each(function (index) {
                 var city = this;
                 setTimeout(function () {
                     addMarker(city);
-                }, 500 * index);
+                }, Math.random() * 750 * index);
             })
         }
 
         /// Add a marker to map.
-        function addMarker(marker) {
-            new google.maps.Marker({
-                animation: google.maps.Animation.DROP,
-                position: new google.maps.LatLng(marker.longitude, marker.latitude),
+        function addMarker(city) {
+            var marker = new google.maps.Marker({
+                // Set animation with city state.
+                // State 0 is for the city I am now in and it jumps.
+                animation: city.state == 0 ? google.maps.Animation.BOUNCE : google.maps.Animation.DROP,
+                position: new google.maps.LatLng(city.longitude, city.latitude),
                 map: map,
-                title: marker.title
+                // Set icon for cities with different state.
+                //icon: 'images/icon_' + city.state.toString() + '.png',
+                title: city.title,
+                'info': city.info
             });
+            bindInfo(marker);
         }
 
-
-
-
+        /// Bind infomation of marker.
+        function bindInfo(marker) {
+            // Create infowindow with some options.
+            var infowindow = new google.maps.InfoWindow(
+                {
+                    content: marker.info,
+                    //size: new google.maps.Size(200, 150)
+                    maxWidth: 200
+                });
+            // Open infowindow when mouse over.
+            google.maps.event.addListener(marker, 'mouseover', function () {
+                infowindow.open(map, marker);
+            });
+            // Close infowindow when mouse out.
+            google.maps.event.addListener(marker, 'mouseout', function () {
+                infowindow.close(map, marker);
+            })
+        }
 
     </script>
 </body>
