@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<head>
+    <script type="text/javascript" src="jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCCR7LVud9l47JPTO8X7nqJxAc1UrM8WPI&sensor=true"></script>
+    <link rel="stylesheet" href="footprints.css" type="text/css" />
+    <title>Footprints</title>
+</head>
+<body>
+    <div class="m-mc" id="map-canvas"></div>
+    <script>
+        $(function () {
+            initMap();
+
+            $(cities).each(function () {
+                console.log(this.name);
+            })
+        });
+
+        var map = null;
+        /// Init map.
+        function initMap() {
+            var mapOptions = {
+                center: new google.maps.LatLng(39.97712, 116.353455),
+                zoom: 4,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+            var myLatlng = new google.maps.LatLng(39.97712, 116.353455);
+
+            setData();
+            drop();
+
+
+           
+        }
+
+        /// Data container.
+        var cities = new Array();
+        /// Get data and push them to cities.
+        function setData() {
+            $.ajax({
+                type: "post",
+                url: "data.xml",
+                async: false,
+                success: function (xml) {
+                    $(xml).find('city').each(function () {
+                        var item = $(this);
+                        var city = {
+                            'name': item.attr('name'),
+                            'title': item.find('title').text(),
+                            'longitude': item.find('longitude').text(),
+                            'latitude': item.find('latitude').text(),
+                            'state': item.find('state').text()
+                        }
+                        cities.push(city);
+                    });
+                }
+            });
+        }
+
+        /// Drop method.
+        function drop() {
+            $(cities).each(function (index) {
+                var city = this;
+                setTimeout(function () {
+                    addMarker(city);
+                }, 500 * index);
+            })
+        }
+
+        /// Add a marker to map.
+        function addMarker(marker) {
+            new google.maps.Marker({
+                animation: google.maps.Animation.DROP,
+                position: new google.maps.LatLng(marker.longitude, marker.latitude),
+                map: map,
+                title: marker.title
+            });
+        }
+
+
+
+
+
+    </script>
+</body>

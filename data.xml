@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<data>
+  <city name="BeiJing">
+    <title>北京</title>
+    <longitude>39.97712</longitude>
+    <latitude>116.353455</latitude>
+    <state>0</state>
+  </city>
+
+  <city name="TianJin">
+    <title>天津</title>
+    <longitude>39.095963</longitude>
+    <latitude>117.198715</latitude>
+    <state>-1</state>
+  </city>
+
+  <city name="HangZhou">
+    <title>杭州</title>
+    <longitude>30.268556</longitude>
+    <latitude>120.144768</latitude>
+    <state>-1</state>
+  </city>
+
+  <city name="NanJing">
+    <title>南京</title>
+    <longitude>32.073266</longitude>
+    <latitude>118.804436</latitude>
+    <state>-1</state>
+  </city>
+  <city name="JiNan">
+    <title>济南</title>
+    <longitude>36.659606</longitude>
+    <latitude>117.090569</latitude>
+    <state>-1</state>
+  </city>
+  <city name="GuangZhou">
+    <title>广州</title>
+    <longitude>23.14036</longitude>
+    <latitude>113.26561</latitude>
+    <state>1</state>
+  </city>
+</data>
