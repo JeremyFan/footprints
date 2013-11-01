@@ -64,7 +64,7 @@
                 var city = this;
                 setTimeout(function () {
                     addMarker(city);
-                }, Math.random() * 750 * index);
+                }, Math.random() * 5000);
             })
         }
 
@@ -73,11 +73,11 @@
             var marker = new google.maps.Marker({
                 // Set animation with city state.
                 // State 0 is for the city I am now in and it jumps.
-                animation: city.state == 0 ? google.maps.Animation.BOUNCE : google.maps.Animation.DROP,
+                animation: city.state ==0 ? google.maps.Animation.BOUNCE : google.maps.Animation.DROP,
                 position: new google.maps.LatLng(city.longitude, city.latitude),
                 map: map,
                 // Set icon for cities with different state.
-                //icon: 'images/icon_' + city.state.toString() + '.png',
+                icon: city.state==-1?null:'images/i_'+city.state+'.png',
                 title: city.title,
                 'info': city.info
             });
@@ -89,7 +89,7 @@
             // Create infowindow with some options.
             var infowindow = new google.maps.InfoWindow(
                 {
-                    content: marker.info,
+                    content: marker.title+'<br/>---------------<br/>'+marker.info,
                     //size: new google.maps.Size(200, 150)
                     maxWidth: 200
                 });
